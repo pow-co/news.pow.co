@@ -7,7 +7,7 @@ defmodule Pow.Accounts.User do
     field :about, :string
     field :username, :string
 
-    has_many :posts, Post
+    has_many :posts, Post, foreign_key: 'creator_id'
 
     timestamps()
   end
