@@ -14,7 +14,7 @@ defmodule Pow.Feed.Upvote do
   @doc false
   def changeset(upvote, attrs) do
     upvote
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, [:user_id, :post_id])
+    |> validate_required([:user_id, :post_id])
   end
 end

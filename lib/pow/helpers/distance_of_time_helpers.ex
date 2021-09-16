@@ -148,9 +148,9 @@ defmodule Pow.DistanceOfTimeHelpers do
 
   defp translate_duration(msg, opts \\ []) do
     if count = opts[:count] do
-      Gettext.dngettext(MyApp.Gettext, "durations", msg, msg, count, opts)
+      Gettext.dngettext(PowWeb.Gettext, "durations", msg, msg, count, opts)
     else
-      Gettext.dgettext(MyApp.Gettext, "durations", msg, opts)
+      Gettext.dgettext(PowWeb.Gettext, "durations", msg, opts)
     end
   end
 end

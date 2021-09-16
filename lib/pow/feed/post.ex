@@ -7,6 +7,7 @@ defmodule Pow.Feed.Post do
   schema "posts" do
     field :title, :string
     field :url, :string
+    field :upvotes_count, :integer, virtual: true
     
     belongs_to :creator, User
     has_many :upvotes, Upvote

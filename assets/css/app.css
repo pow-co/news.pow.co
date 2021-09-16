@@ -1,6 +1,120 @@
 /* This file is for your main application css. */
 @import "./phoenix.css";
 
+body {
+  font-family: 'Arimo', sans-serif;
+}
+
+.header-container {
+  background-color: #ff6600;
+  display: flex;
+}
+
+.header-logo {
+  width:18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+
+.header-logo img {
+  border:1px white solid;
+}
+
+.header-menu-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 11pt;
+  color: #222222;
+}
+
+.header-menu-links-left{
+  display: flex;
+  flex-direction: row;
+}
+
+.header-menu-logo {
+  margin-right: 5px;
+}
+
+.header-menu-login-container {
+  padding-right: 4px;
+  display: flex;
+  align-items: center;
+}
+
+a:link, .header-container a:visited {
+  color: #000000;
+  text-decoration: none;
+}
+
+.feed-container a:visited {
+  color: #828282;
+}
+
+.feed-container {
+  font-size: 11pt;
+  color: #828282;
+  background-color: #F6F6F0;
+  padding: 5px;
+}
+
+.post-container {
+  margin-bottom: 8px;
+}
+
+.post-header {
+  display: flex;
+}
+
+.post-footer {
+  margin-left: 27px;
+}
+
+.post-website, .post-website a, .post-footer, .post-footer a {
+  font-size: 9pt;
+  color: #828282;
+}
+
+.post-upvote-arrow {
+  width: 10px;
+  height: 10px;
+  border: 0px;
+  margin: 3px 2px 6px;
+  background: url(/images/grayarrow.gif) no-repeat;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+  .post-upvote-arrow { background-size: 10px; background-image: url(/images/grayarrow2x.gif); }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 750px) {
+  body {
+    margin: 0;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .header-menu-logo {
+    font-size: 17px;
+  }
+
+  .header-menu-links-left{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .feed-container {
+    font-size: 12pt;
+    line-height: 14pt;
+  }
+}
+
 /* Alerts and form errors */
 .alert {
   padding: 15px;

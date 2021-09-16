@@ -10,6 +10,16 @@ defmodule Pow.Feed do
     Repo.all(Post)
   end
 
+  def posts_ordered_by_upvotes do
+    query = from post in Post,
+      left_join: up in assoc(post, :upvotes),
+      preload: [:creator],
+      group_by: post.id,
+      select_merge: %{upvotes_count: count(up.id)},
+      order_by: [desc: count(up.id)]
+    Repo.all(query)
+  end
+
   def get_post!(id), do: Repo.get!(Post, id)
 
   def create_post(attrs \\ %{}) do

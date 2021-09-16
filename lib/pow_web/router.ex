@@ -16,7 +16,7 @@ defmodule PowWeb.Router do
   scope "/", PowWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", FeedController, :index
   end
 
   # Other scopes may use custom stacks.
