@@ -46,5 +46,10 @@
         </div>
       </div>
     <% end %>
+
+    <div class="feed-more-button">
+      <a href="#?more">More</a>
+    </div>
+    <div class="feed-footer-line"></div>
   </div>
 </div>

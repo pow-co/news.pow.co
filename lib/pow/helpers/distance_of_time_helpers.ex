@@ -21,6 +21,10 @@ defmodule Pow.DistanceOfTimeHelpers do
     duration_in_words(duration)
   end
 
+  def random_days_ago(range) do
+    NaiveDateTime.utc_now() |> NaiveDateTime.add(-60 * 60 * 24 * Enum.random(range))
+  end
+
   defp maybe_convert_to_minutes(%{seconds: seconds}) when seconds > 59 do
     %{minutes: round(seconds / 60)}
   end

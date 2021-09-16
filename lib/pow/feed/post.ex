@@ -18,7 +18,7 @@ defmodule Pow.Feed.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:title, :url, :creator_id])
+    |> cast(attrs, [:title, :url, :creator_id, :inserted_at])
     |> validate_required([:title, :url, :creator_id])
   end
 end
