@@ -32,10 +32,12 @@
           <div class="post-upvote-container">
             <a href="#"><div class="post-upvote-arrow"></div></a>
           </div>
-          <a href="<%=post.url%>" class="post-link"><%= post.title %></a>
-          <span class="post-website">
-            &nbsp (<a href="#"><span><%= parse_host(post.url)%></span></a>)
-          </span>
+          <div>
+            <a href="<%=post.url%>" class="post-link"><%= post.title %></a>
+            <span class="post-website">
+              &nbsp (<a href="#"><span><%= parse_host(post.url)%></span></a>)
+            </span>
+          </div>
         </div>
         <div class="post-footer">
           <span><%= post.upvotes_count%> points </span>
