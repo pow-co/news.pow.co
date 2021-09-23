@@ -29,4 +29,19 @@ defmodule Pow.Accounts do
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
   end
+
+  def find_or_create_user_from_handhash(data \\ %{}) do
+    user_attrs = %{
+      handhash_id: get_in(data, ["public_profile", "id"]),
+      email: get_in(data, ["private_profile", "email"]),
+      phone_number: get_in(data, ["private_profile", "phone_number"]),
+      username: get_in(data, ["public_profile", "handle"]),
+      avatar_url: get_in(data, ["public_profile", "avatar_url"])
+    }
+
+    case Repo.get_by(User, %{handhash_id: user_attrs[:handhash_id]}) do
+      nil -> create_user(user_attrs)
+      user -> {:ok, user}
+    end
+  end
 end

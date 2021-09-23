@@ -13,10 +13,26 @@ defmodule PowWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug PowWeb.Plugs.AuthPipeline
+  end
+
+  pipeline :ensure_auth do
+    plug Guardian.Plug.EnsureAuthenticated
+  end
+
   scope "/", PowWeb do
     pipe_through :browser
 
     get "/", FeedController, :index
+    get "/login", UserController, :login
+    get "/handcash/callback", UserController, :handcash_callback
+  end
+
+  scope "/", PowWeb do
+    pipe_through [:browser, :auth, :ensure_auth]
+
+    get "/logout", UserController, :logout
   end
 
   # Other scopes may use custom stacks.

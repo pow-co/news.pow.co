@@ -30,6 +30,9 @@ config :pow, PowWeb.Endpoint,
   ],
   secret_key_base: secret_key_base
 
+config :pow,
+  handcash_app_id: System.get_env("HANDHASH_APP_ID")
+
 # ## Using releases (Elixir v1.9+)
 #
 # If you are doing OTP releases, you need to instruct Phoenix

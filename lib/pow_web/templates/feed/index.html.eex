@@ -18,7 +18,11 @@
       </div>
       <div class="header-menu-login-container">
         <span class="pagetop">
-          <a href="#">login</a>
+        <%= if @current_user do %>
+          <a href="/logout">logout</a>
+        <% else %>
+          <a href="/login">login</a>
+        <% end %>
         </span>
       </div>
     </div>

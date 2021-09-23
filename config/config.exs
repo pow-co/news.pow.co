@@ -13,7 +13,7 @@ config :pow,
 # Configures the endpoint
 config :pow, PowWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "+SrU3vgJWUXDmUCUf0LauWzw8G+5kSchfboZOYLWlSIF7uuG0Vqha7atdzp7x4xv",
+  secret_key_base: "u0UOoDnGi4Q+ItiToKBohvXQrFYSTnQMk7jE3NrsKfI9RCnPzRs+nphf0X21O/VE",
   render_errors: [view: PowWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Pow.PubSub,
   live_view: [signing_salt: "KMoK0l7n"]
@@ -25,6 +25,10 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :pow, Pow.Guardian,
+  issuer: "pow",
+  secret_key: "L/4B9m6d8C5S6wX/JCPA6AR+bSvpHcJ5BS+i9U33wCNWZcBJebeKtQD8EnMTearZ"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
