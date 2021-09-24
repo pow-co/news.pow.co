@@ -5,7 +5,7 @@
     </div>
     <div class="header-menu-container">
       <div class="header-menu-links-left">
-        <b class="header-menu-logo"><a href="news">Pow News</a></b>
+        <b class="header-menu-logo"><a href="/">Pow News</a></b>
         <div>
           <a href="#">new</a> | 
           <a href="#">past</a> | 
@@ -14,6 +14,9 @@
           <a href="#">show</a> | 
           <a href="#">jobs</a> | 
           <a href="#">submit</a>
+          <%= link to: Routes.post_path(@conn, :new) do %>
+          submit
+          <%end%>
         </div>
       </div>
       <div class="header-menu-login-container">

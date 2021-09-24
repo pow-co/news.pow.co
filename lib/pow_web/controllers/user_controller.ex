@@ -1,7 +1,6 @@
 defmodule PowWeb.UserController do
   use PowWeb, :controller
   alias Pow.{Accounts, Guardian}
-  alias PowWeb.Router.Helpers
   alias PowWeb.Services.HandhashService
 
   def login(conn, _params) do
@@ -18,7 +17,7 @@ defmodule PowWeb.UserController do
         conn
         |> Guardian.Plug.sign_in(user)
         |> assign(:current_user, user)
-        |> redirect(to: Helpers.feed_path(conn, :index))
+        |> redirect(to: Routes.feed_path(conn, :index))
     end
   end
 
@@ -26,6 +25,6 @@ defmodule PowWeb.UserController do
     conn
     |> Guardian.Plug.sign_out()
     |> put_flash(:info, "Successfully Loged Out")
-    |> redirect(to: Helpers.feed_path(conn, :index))
+    |> redirect(to: Routes.feed_path(conn, :index))
   end
 end

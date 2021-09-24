@@ -27,6 +27,7 @@ defmodule PowWeb.Router do
     get "/", FeedController, :index
     get "/login", UserController, :login
     get "/handcash/callback", UserController, :handcash_callback
+    resources "/posts", PostController, only: [:new, :create]
   end
 
   scope "/", PowWeb do
