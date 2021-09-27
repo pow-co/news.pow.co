@@ -13,7 +13,6 @@
           <a href="#">ask</a> | 
           <a href="#">show</a> | 
           <a href="#">jobs</a> | 
-          <a href="#">submit</a>
           <%= link to: Routes.post_path(@conn, :new) do %>
           submit
           <%end%>
@@ -21,10 +20,14 @@
       </div>
       <div class="header-menu-login-container">
         <span class="pagetop">
-        <%= if @current_user do %>
-          <a href="/logout">logout</a>
+        <%= if @conn.assigns.current_user do %>
+          <%= link to: Routes.user_path(@conn, :logout) do %>
+          Logout
+          <%end%>
         <% else %>
-          <a href="/login">login</a>
+          <%= link to: Routes.user_path(@conn, :login) do %>
+          Login
+          <%end%>
         <% end %>
         </span>
       </div>

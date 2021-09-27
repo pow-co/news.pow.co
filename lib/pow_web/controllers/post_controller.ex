@@ -5,7 +5,7 @@ defmodule PowWeb.PostController do
 
   def new(conn, _params) do
     post = Post.changeset(%Post{}, %{})
-    render(conn, "new.html", post: post, errors: false, current_user: current_user(conn))
+    render(conn, "new.html", post: post, errors: false)
   end
 
   def create(conn, %{"post" => post_params}) do
@@ -15,9 +15,7 @@ defmodule PowWeb.PostController do
         |> redirect(to: Routes.feed_path(conn, :index))
       {:error, post} ->
         conn
-        |> render("new.html", post: post, errors: post.errors, current_user: current_user(conn))
+        |> render("new.html", post: post, errors: post.errors)
     end
   end
-
-  def current_user(conn), do: Guardian.Plug.current_resource(conn)
 end

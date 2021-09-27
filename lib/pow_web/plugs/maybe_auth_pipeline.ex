@@ -6,4 +6,5 @@ defmodule PowWeb.Plugs.MaybeAuthPipeline do
 
   plug Guardian.Plug.VerifySession
   plug Guardian.Plug.LoadResource, allow_blank: true
+  plug PowWeb.Plugs.LoadCurrentUser
 end
