@@ -4,11 +4,6 @@ defmodule PowWeb.Plugs.LoadCurrentUser do
   def init(config), do: config
 
   def call(conn, _) do
-    case Guardian.Plug.authenticated?(conn) do
-      true ->
-        assign(conn, :current_user, Guardian.Plug.current_resource(conn))
-      false ->
-        conn
-    end
+    assign(conn, :current_user, Guardian.Plug.current_resource(conn))
   end
 end
