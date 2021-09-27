@@ -13,10 +13,8 @@ defmodule PowWeb.UserController do
   def handcash_callback(conn, %{"authToken" => auth_token}) do
     with {:ok, user_data} <- HandhashService.get_current_profile(auth_token),
         {:ok, user} <- Accounts.find_or_create_user_from_handhash(user_data) do
-      
-        conn
+      conn
         |> Guardian.Plug.sign_in(user)
-        |> assign(:current_user, user)
         |> redirect(to: Routes.feed_path(conn, :index))
     end
   end

@@ -17,22 +17,22 @@ defmodule PowWeb.Router do
     plug PowWeb.Plugs.AuthPipeline
   end
 
-  pipeline :ensure_auth do
-    plug Guardian.Plug.EnsureAuthenticated
+  pipeline :maybe_auth do
+    plug PowWeb.Plugs.MaybeAuthPipeline
   end
 
   scope "/", PowWeb do
-    pipe_through :browser
+    pipe_through [:browser, :maybe_auth]
 
     get "/", FeedController, :index
     get "/login", UserController, :login
     get "/handcash/callback", UserController, :handcash_callback
-    resources "/posts", PostController, only: [:new, :create]
   end
 
   scope "/", PowWeb do
-    pipe_through [:browser, :auth, :ensure_auth]
+    pipe_through [:browser, :auth]
 
+    resources "/posts", PostController, only: [:new, :create]
     get "/logout", UserController, :logout
   end
 

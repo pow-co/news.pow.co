@@ -28,6 +28,7 @@ config :phoenix, :json_library, Jason
 
 config :pow, Pow.Guardian,
   issuer: "pow",
+  ttl: { 30, :days },
   secret_key: "L/4B9m6d8C5S6wX/JCPA6AR+bSvpHcJ5BS+i9U33wCNWZcBJebeKtQD8EnMTearZ"
 
 # Import environment specific config. This must remain at the bottom
