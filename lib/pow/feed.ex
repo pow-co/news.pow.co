@@ -1,7 +1,7 @@
 defmodule Pow.Feed do
   import Ecto.Query, warn: false
 
-  alias Pow.Repo
+  alias Pow.{Repo, Pagination}
   alias Pow.Feed.{Post, Upvote}
 
   # Posts #
@@ -10,14 +10,16 @@ defmodule Pow.Feed do
     Repo.all(Post)
   end
 
-  def posts_ordered_by_upvotes do
+  def posts_ordered_by_upvotes(page \\ 1, per_page \\ 20) do
     query = from post in Post,
       left_join: up in assoc(post, :upvotes),
       preload: [:creator],
       group_by: post.id,
       select_merge: %{upvotes_count: count(up.id)},
       order_by: [desc: count(up.id)]
-    Repo.all(query)
+    
+    query
+      |> Pagination.page(page - 1, per_page: per_page)
   end
 
   def get_post!(id), do: Repo.get!(Post, id)

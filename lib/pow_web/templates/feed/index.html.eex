@@ -15,7 +15,7 @@
           <a href="#">jobs</a> | 
           <%= link to: Routes.post_path(@conn, :new) do %>
           submit
-          <%end%>
+          <% end %>
         </div>
       </div>
       <div class="header-menu-login-container">
@@ -27,7 +27,7 @@
         <% else %>
           <%= link to: Routes.user_path(@conn, :login) do %>
           Login
-          <%end%>
+          <% end %>
         <% end %>
         </span>
       </div>
@@ -35,7 +35,7 @@
   </div>
 
   <div class="feed-container">
-    <%= for {post, index} <- Enum.with_index(@posts) do %>
+    <%= for {post, index} <- Enum.with_index(@posts.list) do %>
       <div class="post-container">
         <div class="post-header">
           <div class="post-number"><%= index+1 %>.</div>
@@ -58,10 +58,13 @@
         </div>
       </div>
     <% end %>
-
-    <div class="feed-more-button">
-      <a href="#?more">More</a>
-    </div>
+    <%= if @posts.has_next do %>
+      <div class="feed-more-button">
+        <%= link to: Routes.feed_path(@conn, :index, page: @posts.page + 2) do %>
+        More
+        <% end %>
+      </div>
+    <% end %>
     <div class="feed-footer-line"></div>
   </div>
 </div>
