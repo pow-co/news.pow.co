@@ -1,7 +1,7 @@
 defmodule Pow.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Pow.Feed.Post
+  alias Pow.Feed.{Post, Comment}
 
   schema "users" do
     field :about, :string
@@ -12,6 +12,7 @@ defmodule Pow.Accounts.User do
     field :handhash_id, :string
 
     has_many :posts, Post, foreign_key: 'creator_id'
+    has_many :comments, Comment
 
     timestamps()
   end

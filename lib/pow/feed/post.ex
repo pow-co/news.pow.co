@@ -2,7 +2,7 @@ defmodule Pow.Feed.Post do
   use Ecto.Schema
   import Ecto.Changeset
   alias Pow.Accounts.User
-  alias Pow.Feed.Upvote
+  alias Pow.Feed.{Upvote, Comment}
 
   schema "posts" do
     field :title, :string
@@ -11,6 +11,7 @@ defmodule Pow.Feed.Post do
     
     belongs_to :creator, User
     has_many :upvotes, Upvote
+    has_many :comments, Comment
 
     timestamps()
   end
