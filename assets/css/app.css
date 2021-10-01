@@ -180,3 +180,23 @@ a:link, .header-container a:visited {
   display: block;
   margin: -1rem 0 2rem;
 }
+
+
+.add-comment-container {
+  margin-left: 23px;
+}
+
+.comments-container {
+  margin-left: 8px;
+}
+
+.comment-body {
+  padding-left: 15px;
+  color: #000000;
+  margin-bottom: 5px;
+}
+
+.comments-container .post-header, .comments-container .post-header a {
+  font-size: 9pt;
+  color: #828282;
+}

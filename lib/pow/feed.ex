@@ -13,7 +13,7 @@ defmodule Pow.Feed do
   def posts_ordered_by_upvotes(page \\ 1, per_page \\ 20) do
     query = from post in Post,
       left_join: up in assoc(post, :upvotes),
-      preload: [:creator, :comments],
+      preload: [:creator, comments: [:user]],
       group_by: post.id,
       select_merge: %{upvotes_count: count(up.id)},
       order_by: [desc: count(up.id)]
@@ -26,7 +26,7 @@ defmodule Pow.Feed do
     query = from post in Post,
       left_join: up in assoc(post, :upvotes),
       where: post.id == ^id,
-      preload: [:creator, :comments],
+      preload: [:creator, comments: [:user]],
       group_by: post.id,
       select_merge: %{upvotes_count: count(up.id)}
 

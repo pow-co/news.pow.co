@@ -56,19 +56,37 @@
       </div>
     </div>
 
-    <%= form_for @comment_changeset, Routes.post_comment_path(@conn, :create, @post), fn f -> %>
-      <%= hidden_input f, :user_id, value: @conn.assigns.current_user.id %>
-      <%= hidden_input f, :post_id, value: @post.id %>
+    <div class="add-comment-container">
+      <%= form_for @comment_changeset, Routes.post_comment_path(@conn, :create, @post), fn f -> %>
+        <%= hidden_input f, :user_id, value: @conn.assigns.current_user && @conn.assigns.current_user.id %>
+        <%= hidden_input f, :post_id, value: @post.id %>
 
-      <%= textarea f, :body, class: "form-control" %>
-      <%= error_tag f, :body %>
-      <%= submit "Submit", class: "btn btn-primary" %>
-    <% end %>
+        <div>
+          <%= textarea f, :body, class: "form-control", cols: "55", rows: "6" %>
+        </div>
+        <%= error_tag f, :body %>
+        <div>
+          <%= submit "Add comment", class: "btn btn-primary" %>
+        </div>
+      <% end %> 
+    </div>
 
-    </br>
-    <%= for comment <- @post.comments do %>
-      <%= comment.body %>
-    <% end %>
+    <div class="comments-container">
+      <%= for comment <- @post.comments do %>
+        <div class="post-header">
+          <div class="post-upvote-container">
+            <a href="#"><div class="post-upvote-arrow"></div></a>
+          </div>
+          <div>
+            <a href="#" class="post-link"><%= comment.user.username %></a>
+            <span><%= PowWeb.FeedView.time_ago(comment.inserted_at) %> ago </span>
+          </div>
+        </div>
+        <div class="comment-body">
+          <%= comment.body %>
+        </div>
+      <% end %>
+    </div>
 
     <div class="feed-footer-line"></div>
   </div>
