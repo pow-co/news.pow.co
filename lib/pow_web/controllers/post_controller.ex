@@ -2,7 +2,7 @@ defmodule PowWeb.PostController do
   use PowWeb, :controller
   alias PowWeb.ErrorView
   alias Pow.Feed
-  alias Pow.Feed.Post
+  alias Pow.Feed.{Post, Comment}
 
   def new(conn, _params) do
     post = Post.changeset(%Post{}, %{})
@@ -22,12 +22,13 @@ defmodule PowWeb.PostController do
 
   def show(conn, %{"id" => post_id}) do
     post = Feed.get_post(post_id)
+    comment_changeset = Feed.change_comment(%Comment{})
 
     case post do
       nil ->
         render(conn, ErrorView, "404.html")
       post ->
-        render(conn, "show.html", post: post, errors: false)
+        render(conn, "show.html", post: post, comment_changeset: comment_changeset)
     end
   end
 end

@@ -19,5 +19,16 @@ defmodule Pow.Feed.Comment do
     comment
     |> cast(attrs, [:body, :user_id, :post_id])
     |> validate_required([:body, :user_id, :post_id])
+    |> validate_not_nil([:body])
+  end
+
+  def validate_not_nil(changeset, fields) do
+    Enum.reduce(fields, changeset, fn field, changeset ->
+      if get_field(changeset, field) == nil do
+        add_error(changeset, field, "nil")
+      else
+        changeset
+      end
+    end)
   end
 end

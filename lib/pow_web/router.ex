@@ -27,12 +27,16 @@ defmodule PowWeb.Router do
     get "/", FeedController, :index
     get "/login", UserController, :login
     get "/handcash/callback", UserController, :handcash_callback
+    get "/posts/:id", PostController, :show
   end
 
   scope "/", PowWeb do
     pipe_through [:browser, :auth]
 
-    resources "/posts", PostController, only: [:new, :create, :show]
+    resources "/posts", PostController, only: [:new, :create] do
+      resources "/comments", CommentController, only: [:create]
+    end
+
     get "/logout", UserController, :logout
   end
 

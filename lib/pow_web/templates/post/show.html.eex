@@ -55,6 +55,21 @@
         <span>| <a href="#"><%= length(@post.comments) %> comments</a> </span>
       </div>
     </div>
+
+    <%= form_for @comment_changeset, Routes.post_comment_path(@conn, :create, @post), fn f -> %>
+      <%= hidden_input f, :user_id, value: @conn.assigns.current_user.id %>
+      <%= hidden_input f, :post_id, value: @post.id %>
+
+      <%= textarea f, :body, class: "form-control" %>
+      <%= error_tag f, :body %>
+      <%= submit "Submit", class: "btn btn-primary" %>
+    <% end %>
+
+    </br>
+    <%= for comment <- @post.comments do %>
+      <%= comment.body %>
+    <% end %>
+
     <div class="feed-footer-line"></div>
   </div>
 </div>
