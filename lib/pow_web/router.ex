@@ -22,15 +22,6 @@ defmodule PowWeb.Router do
   end
 
   scope "/", PowWeb do
-    pipe_through [:browser, :maybe_auth]
-
-    get "/", FeedController, :index
-    get "/login", UserController, :login
-    get "/handcash/callback", UserController, :handcash_callback
-    get "/posts/:id", PostController, :show
-  end
-
-  scope "/", PowWeb do
     pipe_through [:browser, :auth]
 
     resources "/posts", PostController, only: [:new, :create] do
@@ -38,6 +29,15 @@ defmodule PowWeb.Router do
     end
 
     get "/logout", UserController, :logout
+  end
+
+  scope "/", PowWeb do
+    pipe_through [:browser, :maybe_auth]
+
+    get "/", FeedController, :index
+    get "/login", UserController, :login
+    get "/handcash/callback", UserController, :handcash_callback
+    get "/posts/:id", PostController, :show
   end
 
   # Other scopes may use custom stacks.
