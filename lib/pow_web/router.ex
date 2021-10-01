@@ -32,7 +32,7 @@ defmodule PowWeb.Router do
   scope "/", PowWeb do
     pipe_through [:browser, :auth]
 
-    resources "/posts", PostController, only: [:new, :create]
+    resources "/posts", PostController, only: [:new, :create, :show]
     get "/logout", UserController, :logout
   end
 

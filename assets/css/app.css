@@ -59,13 +59,13 @@ a:link, .header-container a:visited {
   font-size: 11pt;
   color: #828282;
   background-color: #F6F6F0;
-  padding-top: 5px;
+  padding-top: 10px;
   padding-bottom: 20px;
 }
 
 .post-container {
   margin-bottom: 8px;
-  padding-left: 5px;
+  padding-left: 8px;
 }
 
 .post-header {
@@ -74,6 +74,10 @@ a:link, .header-container a:visited {
 
 .post-footer {
   margin-left: 27px;
+}
+
+.single-post .post-footer {
+  margin-left: 15px
 }
 
 .post-website, .post-website a, .post-footer, .post-footer a {

@@ -13,7 +13,7 @@ defmodule Pow.Feed do
   def posts_ordered_by_upvotes(page \\ 1, per_page \\ 20) do
     query = from post in Post,
       left_join: up in assoc(post, :upvotes),
-      preload: [:creator],
+      preload: [:creator, :comments],
       group_by: post.id,
       select_merge: %{upvotes_count: count(up.id)},
       order_by: [desc: count(up.id)]
@@ -22,7 +22,16 @@ defmodule Pow.Feed do
       |> Pagination.page(page - 1, per_page: per_page)
   end
 
-  def get_post!(id), do: Repo.get!(Post, id)
+  def get_post(id) do
+    query = from post in Post,
+      left_join: up in assoc(post, :upvotes),
+      where: post.id == ^id,
+      preload: [:creator, :comments],
+      group_by: post.id,
+      select_merge: %{upvotes_count: count(up.id)}
+
+    Repo.one(query)
+  end
 
   def create_post(attrs \\ %{}) do
     %Post{}
