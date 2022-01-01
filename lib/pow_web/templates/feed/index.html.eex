@@ -51,7 +51,6 @@
         </div>
         <div class="post-footer">
           <span><%= post.upvotes_count%> points </span>
-          <span>by <a href="#"><%= post.creator.username%></a> </span>
           <span><%= time_ago(post.inserted_at) %> ago </span>
           <span>| <a href="#">hide</a> </span>
           <span>

@@ -22,7 +22,7 @@ defmodule PowWeb.Router do
   end
 
   scope "/", PowWeb do
-    pipe_through [:browser, :auth]
+    #pipe_through [:browser, :auth]
 
     resources "/posts", PostController, only: [:new, :create] do
       resources "/comments", CommentController, only: [:create]
