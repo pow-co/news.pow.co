@@ -6,7 +6,7 @@ config :pow, Pow.Repo,
   password: "postgres",
   database: "pow_dev",
   hostname: "localhost",
-  show_sensitive_data_on_connection_error: true,
+  show_sensitive_data_on_connection_error: false,
   pool_size: 10
 
 # For development, we disable any cache and enable
@@ -75,4 +75,4 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
-import_config "dev.secret.exs"
+#import_config "dev.secret.exs"
